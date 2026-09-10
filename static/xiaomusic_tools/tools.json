@@ -1,0 +1,30 @@
+{
+  "_comment": "工具注册表(registry)。用途：在 v0.6.1 default 皮肤控制面板上集中登记「工具」二级页，供主页「工具」总入口读取/遍历；扩到多工具时只需在本文件 items 里追加。docker 落点: /app/xiaomusic/static/xiaomusic_tools/tools.json (web /static/xiaomusic_tools/tools.json)。字段每项 {id,title,icon,url,desc,disabled?}。id 唯一; title 中文显示; icon 离线性字形(无 CDN); url 二级页绝对地址 /static/...; desc 一行简介; disabled=true 置灰不跳。工具实现 = 独立目录 xiaomusic_tools/<tool-id>/{index.html,tool.css,tool.js} 自包含 + 在 items 里挂 url。保持纯数据(不要把跳转逻辑写死进来)。",
+  "version": 3,
+  "items": [
+    {
+      "id": "delete-song",
+      "title": "删除歌曲",
+      "icon": "♻",
+      "url": "/static/xiaomusic_tools/delete-song/index.html",
+      "desc": "从已下载(download/)歌曲中单选一首，二级确认后永久删除",
+      "disabled": false
+    },
+    {
+      "id": "bili-url-download",
+      "title": "链接下载音频",
+      "icon": "⬇",
+      "url": "/static/xiaomusic_tools/bili-url-download/index.html",
+      "desc": "粘贴 B 站视频/分享链接（或其它可解析 URL），调后端 yt-dlp 抽音轨转 mp3 落 download/",
+      "disabled": false
+    },
+    {
+      "id": "upload-tool",
+      "title": "上传工具",
+      "icon": "⬆",
+      "url": "/static/xiaomusic_tools/upload-tool/index.html",
+      "desc": "上传一个插件包(zip)装进工具区；需已装 xiaomusic-tools 补丁才有上传接口",
+      "disabled": false
+    }
+  ]
+}

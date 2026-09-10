@@ -1,0 +1,71 @@
+/* 小爱音箱「工具」一层页 —— tools.css
+   自包含；不引用 default/main.css，不污染皮肤样式；无 CDN/外链。
+   色板与 delete-song/tool.css 保持一致，使「工具landing → 各二级工具页」观感连贯。 */
+:root{
+  --bg:#f4f5f7; --card:#fff; --ink:#1f2933; --muted:#6b7280;
+  --line:#e2e5ea; --brand:#2563eb; --brand-h:#1d4ed8;
+  --brand-soft:#eef4ff;
+  --ok-bg:#eaf7ef; --ok-ink:#1d7a44;
+  --warn-bg:#fff6e6; --warn-ink:#965a07;
+  --err-bg:#fdecec; --err-ink:#b2382a;
+  --radius:10px;
+  --shadow:0 2px 8px rgba(31,41,55,.06);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.5;
+}
+
+/* header */
+.tt-head{background:var(--brand); color:#fff; padding:18px 20px 14px}
+.tt-head h1{margin:0 0 4px; font-size:20px; font-weight:600}
+.tt-sub{margin:0; font-size:13px; opacity:.92}
+.tt-sub code{background:rgba(255,255,255,.18); padding:1px 5px; border-radius:4px; font-size:12px}
+
+/* body */
+.tt-wrap{max-width:860px; margin:0 auto; padding:20px 16px}
+
+/* status */
+.tt-status{
+  padding:10px 12px; border-radius:var(--radius); margin:0 0 14px;
+  border:1px solid var(--line); background:var(--card); font-size:14px;
+}
+.tt-status[hidden]{display:none}
+.tt-status-ok{background:var(--ok-bg); color:var(--ok-ink); border-color:#bcdcc8}
+.tt-status-info{background:var(--brand-soft); color:#1e40af; border-color:#c3d6fd}
+.tt-status-warn{background:var(--warn-bg); color:var(--warn-ink); border-color:#eed9a3}
+.tt-status-error{background:var(--err-bg); color:var(--err-ink); border-color:#f1c7c2}
+.tt-status code{background:rgba(0,0,0,.06); padding:1px 5px; border-radius:4px}
+.tt-status button.tt-auth-go{border:none; background:var(--brand); color:#fff; border-radius:6px;
+  padding:6px 12px; cursor:pointer; font-size:13px; margin-top:8px}
+.tt-status button.tt-auth-go:hover{background:var(--brand-h)}
+.tt-status.tt-status-error .tt-auth-hint{margin-top:10px}
+
+/* grid of cards */
+.tt-grid{list-style:none; margin:0; padding:0; display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(210px, 1fr)); gap:14px}
+.tt-loading{grid-column:1/-1; color:var(--muted); text-align:center; padding:24px}
+.tt-empty{grid-column:1/-1; color:var(--muted); text-align:center; padding:24px}
+.tt-card{border:1px solid var(--line); border-radius:var(--radius); background:var(--card);
+  box-shadow:var(--shadow); cursor:pointer; display:flex; flex-direction:column; gap:6px;
+  padding:18px 16px; text-align:left; transition:transform .12s, border-color .12s, box-shadow .12s}
+.tt-card:hover{transform:translateY(-2px); border-color:#b6cbff; box-shadow:0 6px 16px rgba(37,99,235,.12)}
+.tt-icon{font-size:30px; line-height:1; height:34px}
+.tt-title{font:inherit; font-size:16px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:8px}
+.tt-title a{text-decoration:none}
+.tt-desc{font-size:13px; color:var(--muted); margin:0}
+.tt-disabled .tt-icon,.tt-disabled .tt-title,.tt-disabled .tt-desc{opacity:.5}
+.tt-disabled{cursor:not-allowed}
+.tt-badge{font-size:11px; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:0 6px}
+
+/* count */
+.tt-count{color:var(--muted); font-size:13px; margin:16px 0 0}
+.tt-count[hidden]{display:none}
+
+/* footer */
+.tt-foot{max-width:860px; margin:0 auto; padding:6px 16px 26px; color:var(--muted);
+  font-size:12px; display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+.tt-home-link{color:var(--brand); text-decoration:none; font-size:13px}
+.tt-home-link:hover{text-decoration:underline}
+.tt-foot code{background:rgba(0,0,0,.04); padding:1px 5px; border-radius:4px}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小爱音箱 · 工具</title>
+<!-- 工具一层页（landing）。同目录读 tools.json 渲染卡片；点卡片 jump 到 item.url 的二级页(如 delete-song/index.html)。 -->
+<link rel="stylesheet" href="./tools.css">
+</head>
+<body>
+
+<header class="tt-head">
+  <h1>工具</h1>
+  <p class="tt-sub">在主控制面板点「工具」即到此页。以下列表由工具注册表
+    <code>/static/xiaomusic_tools/tools.json</code>驱动 —— 今后往注册表 append 新工具，
+    本页会自动多出一张卡片，无需改本页。</p>
+</header>
+
+<main class="tt-wrap">
+  <!-- 运行状态条：loading / ok / 401 / error / 空 -->
+  <div id="tt-status" class="tt-status" role="status" hidden></div>
+
+  <!-- 工具卡片网格 -->
+  <ul id="tt-grid" class="tt-grid" aria-label="可用工具列表"></ul>
+
+  <p id="tt-count" class="tt-count" hidden></p>
+</main>
+
+<footer class="tt-foot">
+  <a href="/static/default/index.html" class="tt-home-link">← 返回小爱音箱操控面板主页</a>
+  <span>注册表 <code>/static/xiaomusic_tools/tools.json</code></span>
+</footer>
+
+<script src="./tools.js"></script>
+</body>
+</html>

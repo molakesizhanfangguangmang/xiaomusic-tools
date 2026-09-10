@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小爱音箱 · 上传工具</title>
+<!-- 工具区「上传工具」二级页。选一个插件包(zip)通过 POST /api/xtools/upload 装进工具区。
+     本页与 tools.css 同一套观感；接口由 xiaomusic-tools 补丁(xtools.py)提供。 -->
+<link rel="stylesheet" href="./tool.css">
+</head>
+<body>
+
+<header class="tt-head">
+  <h1>上传工具</h1>
+  <p class="tt-sub">选择插件包（<code>.zip</code>）上传，装好后会自动出现在
+    <a href="/static/xiaomusic_tools/index.html">工具列表</a>里。</p>
+</header>
+
+<main class="tt-wrap">
+
+  <div id="ut-status" class="tt-status" role="status" hidden></div>
+
+  <section class="ut-card">
+    <form id="ut-form" class="ut-form">
+      <label class="ut-drop" id="ut-drop">
+        <input type="file" id="ut-file" accept=".zip,application/zip" hidden>
+        <span class="ut-drop-icon">⬆</span>
+        <span class="ut-drop-main">点击选择插件包，或把 zip 拖到这里</span>
+        <span class="ut-drop-sub" id="ut-filename">支持 .zip；需含 manifest.json 与入口页</span>
+      </label>
+
+      <label class="ut-check">
+        <input type="checkbox" id="ut-overwrite">
+        <span>覆盖安装（同名工具已存在时替换它）</span>
+      </label>
+
+      <button type="submit" id="ut-submit" class="ut-btn" disabled>上传并安装</button>
+    </form>
+  </section>
+
+  <section class="ut-card">
+    <h2 class="ut-h2">包格式</h2>
+    <p class="ut-p">插件包是一个 zip，至少包含：</p>
+    <pre class="ut-pre">manifest.json    必填 {id, title, icon, desc, version, entry?}
+index.html       入口页（entry 默认指它）
+tool.js / tool.css   可选，以及其余任意静态文件</pre>
+    <p class="ut-p ut-muted">包内可以有一个顶层目录（如 <code>my-tool/…</code>），会自动剥掉。
+      <code>id</code> 限字母、数字、短横、下划线。</p>
+  </section>
+
+</main>
+
+<footer class="tt-foot">
+  <a href="/static/xiaomusic_tools/index.html" class="tt-home-link">← 返回工具列表</a>
+  <span>接口 <code>/api/xtools/upload</code></span>
+</footer>
+
+<script src="./tool.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* 从链接下载音频 —— bu- 前缀自包含样式。独立页面加载，不污染 default 皮肤；
+   类名全部 bu-*，避免与 ./tool.css(若有其它工具同域) / default main.css 冲突。无 CDN。 */
+:root{
+  --bg:#f4f5f7; --card:#fff; --ink:#1f2933; --muted:#6b7280;
+  --line:#e2e5ea; --brand:#8b5cf6; --brand-h:#7c3aed; --brand-ink:#fff;
+  --ok-bg:#eaf7ef; --ok-ink:#1d7a44; --warn-bg:#fff6e6; --warn-ink:#965a07;
+  --err-bg:#fdecec; --err-ink:#b2382a; --radius:8px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC",
+  "Microsoft YaHei", sans-serif; background:var(--bg); color:var(--ink); line-height:1.55;
+}
+a{color:var(--brand)}
+
+.bu-head{background:var(--brand); color:#fff; padding:16px 20px 14px}
+.bu-head h1{margin:0 0 4px; font-size:20px; font-weight:600}
+.bu-sub{margin:0; font-size:13px; opacity:.94}
+.bu-sub code{background:rgba(255,255,255,.18); padding:1px 5px; border-radius:4px; font-size:12px}
+
+.bu-wrap{max-width:760px; margin:0 auto; padding:20px 16px}
+.bu-wrap h2{margin:4px 0 10px; font-size:13px; color:var(--muted); letter-spacing:.4px}
+
+/* form */
+.bu-form{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:14px 14px 12px}
+.bu-field{display:block; margin:0 0 12px}
+.bu-label{display:block; font-size:12.5px; color:var(--muted); margin:0 0 5px}
+.bu-input{
+  width:100%; font:inherit; font-size:13.5px; padding:9px 10px; border:1px solid var(--line);
+  border-radius:6px; background:#fff; color:var(--ink); outline:none;
+}
+.bu-input:focus{border-color:var(--brand); box-shadow:0 0 0 2px rgba(139,92,246,.15)}
+.bu-input:disabled{background:#f5f5f6; color:var(--muted)}
+
+.bu-actions{margin-top:4px; text-align:right; display:flex; justify-content:flex-end; gap:10px}
+.bu-btn{
+  font:inherit; border:1px solid var(--line); background:#fff; color:var(--ink);
+  padding:8px 16px; border-radius:6px; cursor:pointer; transition:background .15s, opacity .15s;
+}
+.bu-btn:hover{background:#f4f5f7}
+.bu-btn:disabled{opacity:.45; cursor:not-allowed}
+.bu-btn-primary{background:var(--brand); border-color:var(--brand); color:var(--brand-ink)}
+.bu-btn-primary:hover:not(:disabled){background:var(--brand-h); border-color:var(--brand-h)}
+
+/* status / task */
+.bu-status{
+  margin-top:12px; padding:10px 12px; border-radius:var(--radius);
+  border:1px solid var(--line); background:var(--card); font-size:14px;
+}
+.bu-status[hidden]{display:none}
+.bu-status-info{background:#f5f0ff; color:#5b21b6; border-color:#ddd2ff}
+.bu-status-ok{background:var(--ok-bg); color:var(--ok-ink); border-color:#bcdcc8}
+.bu-status-warn{background:var(--warn-bg); color:var(--warn-ink); border-color:#eed9a3}
+.bu-status-error{background:var(--err-bg); color:var(--err-ink); border-color:#f1c7c2}
+.bu-status button.bu-retry,
+.bu-status #bu-auth-go{margin-left:10px}
+
+.bu-task{margin-top:12px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); padding:12px 14px}
+.bu-task[hidden]{display:none}
+.bu-task-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.bu-task-cur{font-size:13.5px; flex:1 1 200px; word-break:break-all}
+.bu-task-bar{flex:1 1 220px; height:12px; border-radius:8px; background:#eef0f3; overflow:hidden; min-width:120px}
+.bu-bar-fill{display:block; height:100%; width:0; background:var(--brand); border-radius:8px; transition:width .6s ease}
+.bu-task-pct{flex:0 0 3.2em; font-size:13px; color:var(--muted); text-align:right}
+.bu-task-note{margin:8px 0 0; font-size:12.5px; color:var(--muted)}
+
+.bu-hint{color:var(--muted); font-size:13px; margin:12px 0 0}
+.bu-hint[hidden]{display:none}
+
+.bu-foot{max-width:760px; margin:0 auto; padding:6px 16px 26px; color:var(--muted); font-size:12px}
+.bu-foot code{background:#eef0f3; padding:1px 5px; border-radius:4px; font-size:11.5px}

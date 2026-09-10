@@ -1,0 +1,77 @@
+/* 小爱音箱「上传工具」二级页 —— tool.css
+   自包含，不引用 default/main.css；沿用工具区色板，和 tools.css / delete-song 保持一致。 */
+:root{
+  --bg:#f4f5f7; --card:#fff; --ink:#1f2933; --muted:#6b7280;
+  --line:#e2e5ea; --brand:#2563eb; --brand-h:#1d4ed8;
+  --brand-soft:#eef4ff;
+  --ok-bg:#eaf7ef; --ok-ink:#1d7a44;
+  --warn-bg:#fff6e6; --warn-ink:#965a07;
+  --err-bg:#fdecec; --err-ink:#b2382a;
+  --radius:10px;
+  --shadow:0 2px 8px rgba(31,41,55,.06);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.5;
+}
+
+.tt-head{background:var(--brand); color:#fff; padding:18px 20px 14px}
+.tt-head h1{margin:0 0 4px; font-size:20px; font-weight:600}
+.tt-sub{margin:0; font-size:13px; opacity:.92}
+.tt-sub code{background:rgba(255,255,255,.18); padding:1px 5px; border-radius:4px; font-size:12px}
+.tt-sub a{color:#fff; text-decoration:underline}
+
+.tt-wrap{max-width:860px; margin:0 auto; padding:20px 16px}
+
+.tt-status{
+  padding:10px 12px; border-radius:var(--radius); margin:0 0 14px;
+  border:1px solid var(--line); background:var(--card); font-size:14px;
+}
+.tt-status[hidden]{display:none}
+.tt-status-ok{background:var(--ok-bg); color:var(--ok-ink); border-color:#bcdcc8}
+.tt-status-info{background:var(--brand-soft); color:#1e40af; border-color:#c3d6fd}
+.tt-status-warn{background:var(--warn-bg); color:var(--warn-ink); border-color:#eed9a3}
+.tt-status-error{background:var(--err-bg); color:var(--err-ink); border-color:#f1c7c2}
+.tt-status code{background:rgba(0,0,0,.06); padding:1px 5px; border-radius:4px}
+.tt-status a{color:inherit; font-weight:600}
+
+.ut-card{border:1px solid var(--line); border-radius:var(--radius); background:var(--card);
+  padding:18px 18px 16px; margin:0 0 16px; box-shadow:var(--shadow)}
+.ut-form{display:flex; flex-direction:column; gap:14px}
+.ut-drop{
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  border:2px dashed var(--line); border-radius:var(--radius); padding:26px 16px;
+  cursor:pointer; text-align:center; transition:border-color .15s, background .15s;
+}
+.ut-drop:hover, .ut-drop.is-drag{border-color:var(--brand); background:var(--brand-soft)}
+.ut-drop-icon{font-size:26px; color:var(--brand)}
+.ut-drop-main{font-size:15px; font-weight:600}
+.ut-drop-sub{font-size:12px; color:var(--muted); word-break:break-all}
+.ut-drop.has-file .ut-drop-sub{color:var(--ok-ink)}
+
+.ut-check{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink)}
+.ut-check input{width:16px; height:16px}
+
+.ut-btn{
+  align-self:flex-start; border:none; border-radius:8px; background:var(--brand); color:#fff;
+  padding:10px 20px; font-size:15px; font-weight:600; cursor:pointer;
+}
+.ut-btn:hover:not(:disabled){background:var(--brand-h)}
+.ut-btn:disabled{background:#b9c3d3; cursor:not-allowed}
+
+.ut-h2{margin:0 0 8px; font-size:16px}
+.ut-p{margin:0 0 8px; font-size:14px}
+.ut-muted{color:var(--muted); font-size:13px}
+.ut-pre{
+  margin:0 0 10px; padding:12px; border-radius:8px; overflow:auto;
+  background:#f7f8fa; border:1px solid var(--line); font-size:12.5px; line-height:1.6;
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.ut-p code, .ut-muted code{background:rgba(0,0,0,.06); padding:1px 5px; border-radius:4px}
+
+.tt-foot{max-width:860px; margin:0 auto; padding:6px 16px 40px; font-size:13px;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; color:var(--muted)}
+.tt-home-link{color:var(--brand); text-decoration:none}
+.tt-home-link:hover{text-decoration:underline}
+.tt-foot code{background:rgba(0,0,0,.06); padding:1px 5px; border-radius:4px}

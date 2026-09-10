@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>删除已下载歌曲 · 小爱音箱工具</title>
+<link rel="stylesheet" href="./tool.css">
+</head>
+<body>
+
+<header class="dt-head">
+  <h1>删除已下载歌曲</h1>
+  <p class="dt-sub">权限说明：你正在使用根路径 <code>/delmusic</code> 删除 download 区已下载的整首歌曲文件，操作<b>不可撤销</b>。</p>
+</header>
+
+<main class="dt-wrap">
+
+  <!-- 已下载歌曲名单区 -->
+  <section aria-label="已下载歌曲列表">
+    <h2>已下载歌曲</h2>
+
+    <div id="dt-status" class="dt-status" role="status" hidden></div>
+    <p id="dt-hint" class="dt-hint" hidden></p>
+
+    <ul id="dt-list" class="dt-list" aria-label="已下载歌曲列表（单选）"></ul>
+
+    <p id="dt-count" class="dt-count" hidden></p>
+  </section>
+
+  <!-- 删除按钮：仅当选中单曲后可用 -->
+  <div class="dt-actions">
+    <button id="dt-delete-btn" type="button" class="dt-btn dt-btn-danger" disabled>删除选中歌曲</button>
+  </div>
+
+</main>
+
+<!-- 二级确认弹窗：不可撤销提示 + 确认/取消 -->
+<div id="dt-modal" class="dt-modal" role="dialog" aria-modal="true" aria-labelledby="dt-modal-title" hidden>
+  <div class="dt-modal-box">
+    <h2 id="dt-modal-title">确认永久删除？</h2>
+    <p class="dt-modal-file">将删除：<strong id="dt-modal-name" class="dt-name-confirm">-</strong></p>
+    <p class="dt-modal-warn"><strong>不可撤销</strong> · 该歌曲的整首音频文件会从磁盘 download/ 区被<strong>永久删除</strong>，不会进入回收站，无撤销入口。</p>
+    <p class="dt-modal-note">删除后本页会再补一次「刷新音乐标签」（POST /refreshmusictag）以洗掉 cache 里该歌的旧标签残影；结果以删除后页面反馈为准。</p>
+    <div class="dt-modal-actions">
+      <button id="dt-cancel-btn" type="button" class="dt-btn">取消</button>
+      <button id="dt-confirm-btn" type="button" class="dt-btn dt-btn-danger" disabled>确认删除</button>
+    </div>
+  </div>
+</div>
+
+<footer class="dt-foot">
+  <p>本工具页位于 <code>/static/xiaomusic_tools/delete-song/index.html</code>，资源以相对引用 <code>./tool.css</code>、<code>./tool.js</code> 提供。删除入口统一登记在工具注册表 <a href="/static/xiaomusic_tools/tools.json">/static/xiaomusic_tools/tools.json</a>。</p>
+</footer>
+
+<script src="./tool.js"></script>
+</body>
+</html>

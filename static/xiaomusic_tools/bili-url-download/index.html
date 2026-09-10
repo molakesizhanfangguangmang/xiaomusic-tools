@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>链接下载音频 · 小爱音箱工具</title>
+<link rel="stylesheet" href="./tool.css">
+</head>
+<body>
+
+<header class="bu-head">
+  <h1>从链接下载音频</h1>
+  <p class="bu-sub">粘贴一条 B 站视频 / 分享链接(也支持其它 yt-dlp 可解析的 URL)，后端调用现有
+    <code>POST /downloadonemusic</code>(xiaomusic <code>file.py</code>)交给 yt-dlp 抽出音轨转
+    mp3，落盘到 <code>download/</code>，完成后自动出现在「已下载」。</p>
+</header>
+
+<main class="bu-wrap">
+
+  <!-- 输入区 -->
+  <section aria-label="链接下载">
+    <h2>填写下载信息</h2>
+
+    <form id="bu-form" class="bu-form" novalidate>
+      <label class="bu-field">
+        <span class="bu-label">媒体 URL（必填）</span>
+        <input type="url" id="bu-url" class="bu-input" required
+               placeholder="https://www.bilibili.com/video/BV1xx... 或 https://b23.tv/xxx">
+      </label>
+
+      <label class="bu-field">
+        <span class="bu-label">本地文件名（可选，留空则用原视频标题）</span>
+        <input type="text" id="bu-name" class="bu-input"
+               placeholder="例如：某首歌 / 某期播客（勿带扩展名）">
+      </label>
+
+      <div class="bu-actions">
+        <button id="bu-start" type="submit" class="bu-btn bu-btn-primary" disabled>开始下载</button>
+        <button id="bu-stop" type="button" class="bu-btn" disabled>停止（取消任务）</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- 状态 / 任务 -->
+  <section aria-label="下载状态">
+    <div id="bu-status" class="bu-status" role="status" hidden></div>
+
+    <div id="bu-task" class="bu-task" hidden>
+      <div class="bu-task-row">
+        <span id="bu-task-cur" class="bu-task-cur">…</span>
+        <span id="bu-task-bar" class="bu-task-bar"><i class="bu-bar-fill" id="bu-bar-fill"></i></span>
+        <span id="bu-task-pct" class="bu-task-pct">0%</span>
+      </div>
+      <p id="bu-task-note" class="bu-task-note"></p>
+    </div>
+
+    <p id="bu-hint" class="bu-hint" hidden></p>
+  </section>
+
+</main>
+
+<footer class="bu-foot">
+  <p>原理：本页只负责「填链接 → 交给后端 yt-dlp 抽音轨」与「轮询任务进度」。真正下载发生在容器在线曲目管理通道
+  （<code>POST /downloadonemusic</code> → <code>GET /download_progress</code>；B 站抓取可复用配置里的
+  yt-dlp <code>cookie</code>/<code>代理</code>）。文件落 <code>download/</code>（跳过任何用户名/密凭据，后端无鉴权即 401，与删除工具同源逻辑一致）。</p>
+</footer>
+
+<script src="./tool.js"></script>
+</body>
+</html>
